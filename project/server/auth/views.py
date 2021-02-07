@@ -70,7 +70,7 @@ class UserListAPI(MethodView):
 
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
-user_view = UserAPI.as_view("user_api")
+user_view = UserListAPI.as_view("user_api")
 user_blueprint = Blueprint('user', __name__)
 
 # add Rules for API Endpoints
