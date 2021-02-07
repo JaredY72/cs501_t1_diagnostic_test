@@ -37,6 +37,7 @@ class RegisterAPI(MethodView):
                 db.session.commit()
                 # generate the auth token
                 auth_token = user.encode_auth_token(user.id)
+                print(user.decode_auth_token(auth_token))
                 responseObject = {
                     'status': 'success',
                     'message': 'Successfully registered.',
@@ -71,7 +72,7 @@ class UserListAPI(MethodView):
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
 user_view = UserListAPI.as_view("user_api")
-user_blueprint = Blueprint('user', __name__)
+#user_blueprint = Blueprint('user', __name__)
 
 # add Rules for API Endpoints
 auth_blueprint.add_url_rule(
@@ -82,7 +83,7 @@ auth_blueprint.add_url_rule(
 
 # user API
 
-user_blueprint.add_url_rule(
+auth_blueprint.add_url_rule(
     '/users/index',
     view_func=user_view,
     methods=['GET']
