@@ -72,7 +72,7 @@ class UserListAPI(MethodView):
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
 user_view = UserListAPI.as_view("user_api")
-#user_blueprint = Blueprint('user', __name__)
+
 
 # add Rules for API Endpoints
 auth_blueprint.add_url_rule(
@@ -90,10 +90,10 @@ auth_blueprint.add_url_rule(
 )
 
 
-home_blueprint = Blueprint('home', __name__)
+#home_blueprint = Blueprint('home', __name__)
 def home():
     return "CS501 Diagnostic Test"
-home_blueprint.add_url_rule(
+auth_blueprint.add_url_rule(
     '/',
     'home',
     home
