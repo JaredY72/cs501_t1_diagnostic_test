@@ -92,7 +92,7 @@ auth_blueprint.add_url_rule(
 
 #home_blueprint = Blueprint('home', __name__)
 def home():
-    return "CS501 Diagnostic Test"
+    return "home"
 auth_blueprint.add_url_rule(
     '/',
     'home',
