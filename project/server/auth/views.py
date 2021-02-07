@@ -57,12 +57,33 @@ class RegisterAPI(MethodView):
             return make_response(jsonify(responseObject)), 202
 
 
+# referenced https://github.com/aeram0/cs501_t1_diagnostic_test/blob/test/project/server/auth/views.py
+
+class UserListAPI(MethodView):
+    def get(self):
+        email_list = []
+        email = db.session.query(User.email)
+        for i in email:
+            email_list.append(i[0])
+        return make_response(jsonify(email_list)), 201
+
+
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
+user_view = UserAPI.as_view("user_api")
+user_blueprint = Blueprint('user', __name__)
 
 # add Rules for API Endpoints
 auth_blueprint.add_url_rule(
     '/auth/register',
     view_func=registration_view,
     methods=['POST', 'GET']
+)
+
+# user API
+
+user_blueprint.add_url_rule(
+    '/users/index',
+    view_func=user_view,
+    methods=['GET']
 )
