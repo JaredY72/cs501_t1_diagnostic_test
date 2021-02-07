@@ -87,3 +87,13 @@ user_blueprint.add_url_rule(
     view_func=user_view,
     methods=['GET']
 )
+
+
+home_blueprint = Blueprint('home', __name__)
+def home():
+    return "CS501 Diagnostic Test"
+home_blueprint.add_url_rule(
+    '/',
+    'home',
+    home
+)
